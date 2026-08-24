@@ -1,16 +1,15 @@
 ---
 // Reusable placeholder for a photo that hasn't been supplied yet.
-// Swap in a real <img> using the same aspect-ratio/variant once photos are available.
+// Swap in a <PhotoTile> using the same aspectRatio once a photo is available.
 interface Props {
 	label: string;
 	aspectRatio?: string;
-	variant?: 'hero' | 'card' | 'thumbnail';
 }
 
-const { label, aspectRatio = '4 / 3', variant = 'card' } = Astro.props;
+const { label, aspectRatio = '4 / 3' } = Astro.props;
 ---
 
-<div class:list={['placeholder-image', `placeholder-image--${variant}`]} style={`aspect-ratio: ${aspectRatio};`}>
+<div class="placeholder-image" style={`aspect-ratio: ${aspectRatio};`}>
 	<svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
 		<path
 			fill="currentColor"

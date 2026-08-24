@@ -4,41 +4,28 @@ A simple, fast static landing page for LHRG, built with [Astro](https://astro.bu
 Ships **zero JavaScript** — the mobile nav is a native `<details>/<summary>` disclosure, not a
 script — and is built to pass WCAG AA out of the box (see Accessibility below).
 
-## Status: placeholder content
+Live at **[largoharbour.org](https://largoharbour.org)**, deployed via GitHub Pages.
 
-This site is scaffolded with realistic **placeholder content and images** so the layout can be
-reviewed and built out before the client's real material is ready. Before launch:
+## Outstanding before full launch
 
-- [x] Logo added: `src/assets/logo.jpg`, optimized to WebP at build time and used in
-      `src/components/Header.astro`. It's a flat JPG with a white background, wrapped in a white
-      chip to sit cleanly on the navy header — if the client later supplies a transparent PNG/SVG
-      version, drop it in and remove that wrapper.
-- [x] Colour palette (`src/styles/tokens.css`) updated to match the logo's navy/teal, with a
-      darker `--color-teal` chosen specifically to pass 4.5:1 text contrast (see Accessibility).
-- [x] `src/content/data/people.ts` — Chair, Vice-Chair & Secretary, and Treasurer are real.
-- [x] Hero and gallery now use real photos of Lower Largo/the pier (`src/assets/photos/`):
-      `sunset-over-harbour.png` (hero) and `pier-lobster-pots.png` (gallery) are the client's own —
-      no credit needed. The other three gallery photos (`harbour-viaduct.jpg`, `old-harbour.jpg`,
-      `largo-bay.jpg`) are sourced from Wikimedia Commons/Geograph.org.uk under CC BY-SA 2.0 and
-      carry an on-page "Photo: [credit]" link back to the source, as the license requires — replace
-      them with more of the client's own photos as those come in, but don't remove the credit from
-      any Geograph/Commons photo that stays.
-- [~] `src/components/PersonCard.astro` shows a real portrait when a person has a `photo` set in
-      `people.ts` (see Duncan Campbell — `src/assets/photos/people/duncan-campbell.jpg`), and falls
-      back to `<PlaceholderImage>` otherwise. Shona and Alan still need photos added the same way;
-      remove `PlaceholderImage.astro` once nothing uses it.
-- [x] About copy in `src/components/About.astro` replaced with client-approved text.
-- [x] Contact details set: email (`mail@largoharbour.org`) and WhatsApp community link, in
-      `src/components/Contact.astro`. No phone number — not applicable for this client.
-- [ ] Confirm the domain in `astro.config.mjs` (`site:`) and `public/robots.txt` — currently set to
-      `largoharbour.org`.
-- [x] OSCR Scottish Charity number (SC055552) and company registration (SC893516) added to
-      `src/components/Footer.astro` — required by law for a Scottish charity's website.
-- [x] Favicon set generated from `src/assets/favicon.png` (the client's square LHRG icon) into
-      `public/` (`favicon.ico`, 16x16/32x32 PNGs, `apple-touch-icon.png`), wired up in
-      `src/layouts/BaseLayout.astro`.
-- [x] Builder credit ("Built by Timothy Graham", linking to timgraham.dev) added to
-      `src/components/Footer.astro`.
+- [ ] Photos for Shona Cochrane and Alan Cochrane in `src/content/data/people.ts` — currently fall
+      back to a placeholder box (see Duncan Campbell's entry for the pattern: add the photo to
+      `src/assets/photos/people/`, import it, set `photo:` on their entry).
+- [ ] More of the client's own photos to replace the three remaining CC BY-SA credited gallery
+      photos (`harbour-viaduct.jpg`, `old-harbour.jpg`, `largo-bay.jpg` in `src/content/data/gallery.ts`)
+      — not required (the credit link satisfies the license), but nice to have all-original photos.
+
+## Deployment
+
+- **Repo**: [github.com/largo-harbour-regeneration-group/lhrg-website](https://github.com/largo-harbour-regeneration-group/lhrg-website)
+  (public — required for GitHub Pages on the org's Free plan; there's nothing sensitive in the
+  codebase).
+- **Auto-deploy**: `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every
+  push to `main`.
+- **Custom domain**: set via `public/CNAME` (`largoharbour.org`) and the repo's Pages settings.
+  DNS is managed at Dynadot: four `A` records on the root domain pointing at GitHub's Pages IPs
+  (`185.199.108.153`, `.109.153`, `.110.153`, `.111.153`), plus a `CNAME` record for `www` pointing
+  at `largo-harbour-regeneration-group.github.io`. GitHub auto-issues HTTPS once DNS resolves.
 
 ## Accessibility
 
@@ -55,27 +42,29 @@ Built to WCAG 2.1 AA, checked concretely rather than assumed:
 - **Mobile nav** — a native `<details>/<summary>` element (`Nav.astro`), not a scripted toggle:
   works with no JS, and gets keyboard operability and expand/collapse semantics for free.
 - **Skip link** — "Skip to main content" (`index.astro`), visible on keyboard focus.
-- **Reduced motion** — `prefers-reduced-motion: reduce` collapses transitions/animations
-  (`global.css`).
+- **Reduced motion** — `prefers-reduced-motion: reduce` collapses transitions/animations and
+  disables the scroll-in `.reveal` animation (`global.css`).
 - **Images** — decorative icons are `aria-hidden`; the external WhatsApp link is marked as opening
-  a new window for screen reader users. Placeholder photo blocks carry a visible caption that
-  doubles as their accessible label — when real photos go in, give each a real descriptive `alt`.
+  a new window for screen reader users. Real photos (`<PhotoTile>`) carry descriptive `alt` text;
+  the remaining placeholder photo boxes (`<PlaceholderImage>`, for people without a photo yet) show
+  a visible caption that doubles as their accessible label.
 
 ## Project Structure
 
 ```text
 /
-├── public/                  static assets (favicon, robots.txt)
+├── public/                   static assets (favicons, robots.txt, CNAME for the custom domain)
 ├── src/
-│   ├── assets/               source images Astro optimizes at build time (logo.jpg)
-│   ├── components/          one component per section (Header, Hero, About, ...)
+│   ├── assets/
+│   │   └── photos/            source photos Astro optimizes at build time (incl. people/ portraits)
+│   ├── components/           one component per section (Header, Hero, About, ...)
 │   ├── layouts/
-│   │   └── BaseLayout.astro  shared <head>/HTML shell
+│   │   └── BaseLayout.astro   shared <head>/HTML shell
 │   ├── pages/
-│   │   └── index.astro       assembles all sections for the single landing page
-│   ├── content/data/         typed placeholder content (people, gallery captions)
-│   └── styles/                tokens.css (design tokens) -> global.css -> utilities.css
-└── package.json
+│   │   └── index.astro        assembles all sections for the single landing page
+│   ├── content/data/          typed content (people, gallery captions/credits)
+│   └── styles/                 tokens.css (design tokens) -> global.css -> utilities.css
+└── .github/workflows/deploy.yml
 ```
 
 ## Commands

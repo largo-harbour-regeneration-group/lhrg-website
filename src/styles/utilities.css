@@ -60,33 +60,6 @@
 	transform: translateY(0);
 }
 
-/* For use on top of var(--gradient-button)/var(--color-navy) backgrounds, where
-   the default .button would blend into the background. */
-.button--white {
-	background: var(--color-white);
-	color: var(--color-navy);
-	box-shadow: 0 8px 20px rgba(3, 47, 86, 0.25);
-}
-
-.button--white:hover,
-.button--white:focus-visible {
-	filter: none;
-	background: var(--color-sand-light);
-}
-
-.button--outline {
-	background: transparent;
-	color: var(--color-white);
-	border: 2px solid var(--color-white);
-	box-shadow: none;
-}
-
-.button--outline:hover,
-.button--outline:focus-visible {
-	filter: none;
-	background: rgba(255, 255, 255, 0.12);
-}
-
 .visually-hidden {
 	position: absolute;
 	width: 1px;
