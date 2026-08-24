@@ -1,0 +1,38 @@
+---
+import PhotoTile from './PhotoTile.astro';
+import { galleryItems } from '../content/data/gallery';
+---
+
+<section id="gallery" class="section gallery">
+	<div class="container reveal">
+		<h2 class="section-heading">Gallery</h2>
+		<div class="grid-auto">
+			{galleryItems.map((item) => (
+				<div class="gallery__item">
+					<PhotoTile
+						src={item.src}
+						alt={item.alt}
+						aspectRatio="1 / 1"
+						width={320}
+						credit={item.credit}
+						creditUrl={item.creditUrl}
+					/>
+					<p class="gallery__caption">{item.label}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.gallery {
+		background: var(--color-sand);
+	}
+
+	.gallery__caption {
+		margin: var(--space-2) 0 0;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-navy);
+	}
+</style>

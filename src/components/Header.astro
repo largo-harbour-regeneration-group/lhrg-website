@@ -1,0 +1,111 @@
+---
+import { Image } from 'astro:assets';
+import Nav from './Nav.astro';
+import logo from '../assets/logo.jpg';
+import logoSquare from '../assets/favicon.png';
+---
+
+<header class="header">
+	<div class="container header__inner">
+		<a href="/" class="header__brand">
+			<!-- Below 860px: the square icon alone (compact, next to the nav). At 860px+: the
+			     full rectangular logo plus the wordmark. Logo.jpg is a flat JPG with a white
+			     background, so it's wrapped in a white chip to sit cleanly on the navy header —
+			     favicon.png already has its own white rounded background baked in. -->
+			<Image
+				class="header__logo header__logo--square"
+				src={logoSquare}
+				alt="Largo Harbour Regeneration Group home"
+				height={48}
+				densities={[1, 2, 3]}
+				quality={90}
+				format="webp"
+				loading="eager"
+			/>
+			<Image
+				class="header__logo header__logo--full"
+				src={logo}
+				alt="Largo Harbour Regeneration Group home"
+				height={64}
+				densities={[1, 2, 3]}
+				quality={90}
+				format="webp"
+				loading="eager"
+			/>
+			<span class="header__wordmark">Largo Harbour Regeneration Group</span>
+		</a>
+		<Nav />
+	</div>
+	<div class="header__wave" aria-hidden="true"></div>
+</header>
+
+<style>
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: rgba(var(--color-navy-rgb), 0.85);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		padding-block: var(--space-3);
+	}
+
+	.header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.header__brand {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-3);
+		text-decoration: none;
+	}
+
+	.header__logo--square {
+		height: 48px;
+		width: auto;
+	}
+
+	.header__logo--full {
+		display: none;
+		height: 64px;
+		width: auto;
+		background: var(--color-white);
+		border-radius: var(--radius);
+		padding: var(--space-1) var(--space-2);
+	}
+
+	/* Bold, blocky sans-serif to match the logo's lettering style (the site's usual
+	   heading font, Georgia, doesn't match that logo style). Hidden below 860px so it
+	   doesn't crowd the nav — the square icon alone still identifies the site there. */
+	.header__wordmark {
+		display: none;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 800;
+		line-height: 1.15;
+		max-width: 14rem;
+		color: var(--color-white);
+	}
+
+	@media (min-width: 860px) {
+		.header__logo--square {
+			display: none;
+		}
+
+		.header__logo--full {
+			display: block;
+		}
+
+		.header__wordmark {
+			display: block;
+		}
+	}
+
+	.header__wave {
+		height: 4px;
+		background: var(--gradient-wave);
+	}
+</style>

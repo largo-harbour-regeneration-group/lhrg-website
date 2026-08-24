@@ -1,0 +1,57 @@
+:root {
+	/* Coastal / harbour palette — sampled from the LHRG logo's wave gradient.
+	   --color-teal is darkened from the raw sample (#2f9fc0) to hit 5.7:1 contrast
+	   on white/sand backgrounds (WCAG AA needs 4.5:1 for text); the brighter/lighter
+	   sampled tones are kept as decorative-only variants below since they don't meet
+	   text contrast and must never sit under text. */
+	--color-navy-rgb: 5, 68, 122; /* for rgba() use, e.g. the sticky header's glass background */
+	--color-navy: #05447a;
+	--color-navy-dark: #032f56;
+	--color-blue-mid: #0a6096;
+	--color-teal: #1c6f88;
+	--color-teal-bright: #2f9fc0; /* decorative only (gradients, focus ring) — fails AA as text color */
+	--color-cyan-light: #8fd0e0; /* decorative only — never use as text or under text */
+	--color-sand: #f2e9d8;
+	--color-sand-light: #faf6ec;
+	--color-charcoal: #24303a;
+	--color-white: #ffffff;
+	--color-border: #d8cfb8;
+
+	/* Decorative-only gradient (accent bars, underlines) — do not place text on top. */
+	--gradient-wave: linear-gradient(
+		90deg,
+		var(--color-navy) 0%,
+		var(--color-blue-mid) 40%,
+		var(--color-teal-bright) 70%,
+		var(--color-cyan-light) 100%
+	);
+
+	/* Safe to place white text on — both stops pass AA (9.9:1 and 6.7:1). */
+	--gradient-button: linear-gradient(90deg, var(--color-navy), var(--color-blue-mid));
+
+	/* Type */
+	--font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	--font-serif: Georgia, 'Times New Roman', Times, serif;
+
+	--text-sm: 0.875rem;
+	--text-base: 1rem;
+	--text-lg: 1.25rem;
+	--text-xl: 1.75rem;
+	--text-2xl: clamp(2rem, 4vw, 2.75rem);
+	--text-3xl: clamp(2.25rem, 5.5vw, 3.75rem);
+
+	/* Spacing scale */
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 1rem;
+	--space-4: 1.5rem;
+	--space-5: 2.5rem;
+	--space-6: 4rem;
+	--space-7: 6rem;
+
+	/* Misc */
+	--radius: 8px;
+	--radius-lg: 20px;
+	--shadow-card: 0 2px 8px rgba(5, 68, 122, 0.12);
+	--max-width: 72rem;
+}

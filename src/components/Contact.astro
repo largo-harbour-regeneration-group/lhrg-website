@@ -1,0 +1,64 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="contact" class="section contact">
+	<div class="container reveal">
+		<h2 class="section-heading">Get in Touch</h2>
+		<p>
+			Interested in volunteering, donating, or just want to know more? We'd love to hear from
+			you.
+		</p>
+		<ul class="contact__list">
+			<li>
+				<a class="contact__link" href="mailto:mail@largoharbour.org">
+					<Icon class="contact__icon" name="mdi:email-outline" aria-hidden="true" />
+					mail@largoharbour.org
+				</a>
+			</li>
+			<li>
+				<a
+					class="contact__link"
+					href="https://chat.whatsapp.com/LMJD8RvNcPQGX7Q1UoA2KZ"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<Icon class="contact__icon" name="simple-icons:whatsapp" aria-hidden="true" />
+					Join our WhatsApp community
+					<span class="visually-hidden">(opens in a new window)</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<style>
+	.contact__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+
+	.contact__link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		color: var(--color-navy);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.contact__link:hover,
+	.contact__link:focus-visible {
+		color: var(--color-teal);
+	}
+
+	.contact__icon {
+		width: 24px;
+		height: 24px;
+		flex-shrink: 0;
+	}
+</style>

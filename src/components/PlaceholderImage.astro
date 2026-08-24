@@ -1,0 +1,43 @@
+---
+// Reusable placeholder for a photo that hasn't been supplied yet.
+// Swap in a real <img> using the same aspect-ratio/variant once photos are available.
+interface Props {
+	label: string;
+	aspectRatio?: string;
+	variant?: 'hero' | 'card' | 'thumbnail';
+}
+
+const { label, aspectRatio = '4 / 3', variant = 'card' } = Astro.props;
+---
+
+<div class:list={['placeholder-image', `placeholder-image--${variant}`]} style={`aspect-ratio: ${aspectRatio};`}>
+	<svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+		<path
+			fill="currentColor"
+			d="M4 5h3.17L9 3h6l1.83 2H20a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"
+		></path>
+	</svg>
+	<span class="placeholder-image__label">{label}</span>
+</div>
+
+<style>
+	.placeholder-image {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-2);
+		width: 100%;
+		background: var(--color-sand);
+		border: 2px dashed var(--color-border);
+		border-radius: var(--radius-lg);
+		color: var(--color-navy);
+		text-align: center;
+		padding: var(--space-2);
+	}
+
+	.placeholder-image__label {
+		font-size: var(--text-sm);
+		max-width: 90%;
+	}
+</style>

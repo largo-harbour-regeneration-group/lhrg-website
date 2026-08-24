@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import PeopleInvolved from '../components/PeopleInvolved.astro';
+import Gallery from '../components/Gallery.astro';
+import Contact from '../components/Contact.astro';
+import Cta from '../components/Cta.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+	title="Largo Harbour Regeneration Group"
+	description="Largo Harbour Regeneration Group is a community group restoring the harbour and pier at Lower Largo."
+>
+	<a class="skip-link" href="#main-content">Skip to main content</a>
+	<Header />
+	<main id="main-content">
+		<Hero />
+		<About />
+		<PeopleInvolved />
+		<Gallery />
+		<Contact />
+		<Cta />
+	</main>
+	<Footer />
+</BaseLayout>

@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import sunsetOverHarbour from '../assets/photos/sunset-over-harbour.png';
+---
+
+<section class="hero">
+	<div class="hero__media" aria-hidden="true">
+		<Image
+			class="hero__bg"
+			src={sunsetOverHarbour}
+			alt=""
+			width={1280}
+			format="webp"
+			loading="eager"
+			fetchpriority="high"
+		/>
+		<div class="hero__overlay"></div>
+	</div>
+	<div class="container hero__inner">
+		<div class="hero__copy">
+			<h1>Restoring Lower Largo Harbour &amp; Pier for the community</h1>
+			<p>
+				The Largo Harbour Regeneration Group is a volunteer-led community group working to
+				preserve and revive the harbour and pier at Lower Largo for future generations.
+			</p>
+			<a class="button" href="#about">Learn more</a>
+		</div>
+	</div>
+	<svg class="hero__wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+		<path
+			d="M0,32 C240,80 480,0 720,24 C960,48 1200,88 1440,40 L1440,90 L0,90 Z"
+			fill="var(--color-sand-light)"
+		></path>
+	</svg>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		overflow: hidden;
+		min-height: 34rem;
+		display: flex;
+		align-items: center;
+	}
+
+	.hero__media {
+		position: absolute;
+		inset: 0;
+	}
+
+	.hero__media :global(img) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.hero__overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			100deg,
+			rgba(3, 47, 86, 0.92) 0%,
+			rgba(3, 47, 86, 0.72) 40%,
+			rgba(3, 47, 86, 0.35) 75%
+		);
+	}
+
+	.hero__inner {
+		position: relative;
+		z-index: 1;
+		padding-block: var(--space-7) var(--space-6);
+	}
+
+	.hero__copy {
+		max-width: 34rem;
+	}
+
+	.hero__copy h1 {
+		color: var(--color-white);
+		font-size: var(--text-3xl);
+	}
+
+	.hero__copy p {
+		color: var(--color-white);
+		font-size: var(--text-lg);
+		opacity: 0.92;
+	}
+
+	.hero__wave {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -1px;
+		width: 100%;
+		height: 4.5rem;
+		display: block;
+	}
+
+	@media (min-width: 800px) {
+		.hero {
+			min-height: 40rem;
+		}
+	}
+</style>

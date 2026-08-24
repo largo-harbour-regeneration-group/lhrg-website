@@ -1,0 +1,13 @@
+---
+import PersonCard from './PersonCard.astro';
+import { people } from '../content/data/people';
+---
+
+<section id="people" class="section">
+	<div class="container reveal">
+		<h2 class="section-heading">People Involved</h2>
+		<div class="grid-auto">
+			{people.map((person) => <PersonCard {...person} />)}
+		</div>
+	</div>
+</section>

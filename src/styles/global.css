@@ -1,0 +1,89 @@
+@import './tokens.css';
+@import './utilities.css';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-sans);
+	color: var(--color-charcoal);
+	background: var(--color-sand-light);
+	line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-serif);
+	font-weight: 700;
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+	color: var(--color-navy);
+}
+
+a {
+	color: var(--color-teal);
+}
+
+img,
+svg {
+	max-width: 100%;
+	display: block;
+}
+
+button {
+	font-family: inherit;
+}
+
+/* Double-ring focus indicator: the white inner ring stays visible on the navy
+   header/footer, the navy box-shadow stays visible on white/sand sections —
+   together they clear the 3:1 non-text contrast requirement on every
+   background this site uses (checked: navy vs white/sand ≥ 8.2:1, white vs navy ≥ 9.9:1). */
+:focus-visible {
+	outline: 2px solid var(--color-white);
+	outline-offset: 2px;
+	box-shadow: 0 0 0 4px var(--color-navy);
+	border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.reveal {
+		animation: none !important;
+	}
+}
+
+/* Scroll-driven reveal: fades/slides a section in as it enters the viewport.
+   Pure CSS (the `animation-timeline: view()` feature), no JS/IntersectionObserver
+   needed. Browsers without support just show the content statically — this is
+   progressive enhancement, never gates visibility. */
+@supports (animation-timeline: view()) {
+	.reveal {
+		animation: reveal-in linear both;
+		animation-timeline: view();
+		animation-range: entry 0% cover 30%;
+	}
+
+	@keyframes reveal-in {
+		from {
+			opacity: 0;
+			transform: translateY(28px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
