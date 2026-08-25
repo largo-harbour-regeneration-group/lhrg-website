@@ -1,9 +1,8 @@
 import type { ImageMetadata } from 'astro';
 import duncanCampbell from '../../assets/photos/people/duncan-campbell.jpg';
+import shonaCochrane from '../../assets/photos/people/shona-cochrane.jpg';
+import alanCochrane from '../../assets/photos/people/alan-cochrane.jpg';
 
-// TODO: add photos for Shona and Alan as they come in (see `photo` on Duncan's
-// entry for the pattern — falls back to a placeholder box in PersonCard.astro
-// when omitted).
 export interface Person {
 	name: string;
 	role: string;
@@ -21,11 +20,13 @@ export const people: Person[] = [
 	{
 		name: 'Shona Cochrane',
 		role: 'Vice-Chair & Secretary',
-		bio: 'Coordinates meetings, communications, and volunteer sign-ups for regeneration events.',
+		bio: 'A former teacher, she brings her experience in education and community engagement to coordinating meetings, communications, and volunteer sign-ups for regeneration events.',
+		photo: shonaCochrane,
 	},
 	{
 		name: 'Alan Cochrane',
-		role: 'Signatory',
-		bio: 'One of the company’s signatories, providing formal oversight and authorisation for the group’s official transactions and agreements.',
+		role: 'Technical Lead, Pier Design & Restoration',
+		bio: 'Leads the technical planning behind the pier’s restoration, drawing on his engineering background to guide the project from design through to delivery.',
+		photo: alanCochrane,
 	},
 ];

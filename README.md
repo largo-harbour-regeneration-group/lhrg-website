@@ -8,9 +8,6 @@ Live at **[largoharbour.org](https://largoharbour.org)**, deployed via GitHub Pa
 
 ## Outstanding before full launch
 
-- [ ] Photos for Shona Cochrane and Alan Cochrane in `src/content/data/people.ts` — currently fall
-      back to a placeholder box (see Duncan Campbell's entry for the pattern: add the photo to
-      `src/assets/photos/people/`, import it, set `photo:` on their entry).
 - [ ] More of the client's own photos to replace the three remaining CC BY-SA credited gallery
       photos (`harbour-viaduct.jpg`, `old-harbour.jpg`, `largo-bay.jpg` in `src/content/data/gallery.ts`)
       — not required (the credit link satisfies the license), but nice to have all-original photos.
