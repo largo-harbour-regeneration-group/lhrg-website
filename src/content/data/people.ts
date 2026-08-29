@@ -8,6 +8,10 @@ export interface Person {
 	role: string;
 	bio: string;
 	photo?: ImageMetadata;
+	// CSS object-position for cropping `photo` to a square — defaults to '50% 20%'
+	// in PersonCard.astro. Override per-person when the default crop cuts off
+	// hair/head (e.g. a photo where hair reaches close to the top of the frame).
+	photoPosition?: string;
 }
 
 export const people: Person[] = [
@@ -22,6 +26,7 @@ export const people: Person[] = [
 		role: 'Vice-Chair & Secretary',
 		bio: 'A former teacher, she brings her experience in education and community engagement to coordinating meetings, communications, and volunteer sign-ups for regeneration events.',
 		photo: shonaCochrane,
+		photoPosition: '50% 0%',
 	},
 	{
 		name: 'Alan Cochrane',

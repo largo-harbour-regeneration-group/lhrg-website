@@ -5,7 +5,7 @@ import type { Person } from '../content/data/people';
 
 type Props = Person;
 
-const { name, role, bio, photo } = Astro.props;
+const { name, role, bio, photo, photoPosition = '50% 20%' } = Astro.props;
 ---
 
 <article class="person-card">
@@ -15,7 +15,7 @@ const { name, role, bio, photo } = Astro.props;
 				src={photo}
 				alt={`Photo of ${name}`}
 				aspectRatio="1 / 1"
-				objectPosition="50% 20%"
+				objectPosition={photoPosition}
 				width={320}
 			/>
 		) : (
